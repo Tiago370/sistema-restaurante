@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
 from .forms import ProdutoForm
-from produtos.models import Produtos
+from produtos.models import Produto
 
 def produtos(request):
     if request.method == "POST":
