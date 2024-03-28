@@ -3,6 +3,7 @@ from django.template import loader
 from django.shortcuts import render
 from .forms import ProdutoForm
 from produtos.models import Produtos
+from django.shortcuts import redirect
 
 def produtos(request):
     if request.method == "POST":
@@ -21,3 +22,9 @@ def produtos(request):
         form = ProdutoForm()
 
         return render(request, 'produtos.html', {"form": form})
+
+def delete_produto(request):
+    produto_id = int(request.GET.get("id"))
+    produto = Produtos.objects.all()[produto_id]
+    produto.delete()
+    return redirect("/produtos")
