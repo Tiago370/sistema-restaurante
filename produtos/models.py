@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Produto(models.Model):
@@ -11,6 +12,7 @@ class Produto(models.Model):
         return self.nome
     
 class Cliente(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     nome = models.CharField(max_length=255)
     endereco = models.CharField(max_length=255, null=True)
     whatsapp = models.CharField(max_length=255, null=True)
